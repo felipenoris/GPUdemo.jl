@@ -1,6 +1,7 @@
 
 using CuArrays, GPUArrays
 using BenchmarkTools
+using Base.Threads
 
 function threadded_map!(f::Function, A::Array, B::Array)
     Threads.@threads for i in 1:length(A)
@@ -27,7 +28,7 @@ speedup = maximum(times) ./ times
 
 using UnicodePlots
 
-plt = barplot( ["1 core", "2 cores", "gpu"],
+plt = barplot( ["1 thread", "$(nthreads()) threads", "gpu"],
               speedup,
         title="Benchmark (seconds)")
 
