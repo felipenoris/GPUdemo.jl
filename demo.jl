@@ -3,6 +3,10 @@ using CuArrays, GPUArrays
 using BenchmarkTools
 using Base.Threads
 
+if nthreads() == 1
+    error("Run `export JULIA_NUM_THREADS=n`, n > 1, before launching Julia.")
+end
+
 function threadded_map!(f::Function, A::Array, B::Array)
     Threads.@threads for i in 1:length(A)
         A[i] = f(B[i])
