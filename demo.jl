@@ -1,4 +1,6 @@
 
+# based on https://nextjournal.com/sdanisch/julia-gpu-programming
+
 using CuArrays, GPUArrays
 using BenchmarkTools
 using Base.Threads
