@@ -13,7 +13,7 @@ kernel(y) = (y / 33f0) * (732.f0/y)
 # on the cpu without threads:
 single_t = @belapsed map!($kernel, $x, $y)
 
-# "on the CPU with 4 threads (2 real cores):
+# on the CPU with 4 threads (2 real cores):
 thread_t = @belapsed threadded_map!($kernel, $x, $y)
 
 # on the GPU:
@@ -24,8 +24,6 @@ gpu_t = @belapsed begin
 end
 times = [single_t, thread_t, gpu_t]
 speedup = maximum(times) ./ times
-println("speedup: $speedup")
-bar(, speedup, legend = false, fillcolor = :grey, ylabel = "speedup")
 
 using UnicodePlots
 
