@@ -18,7 +18,6 @@ end
 x, y = rand(10^7), rand(10^7)
 kernel(y) = (y / 33f0) * (732.f0/y)
 
-
 @info("1 thread...")
 single_t = @belapsed map!($kernel, $x, $y)
 
@@ -38,6 +37,6 @@ using UnicodePlots
 
 plt = barplot( ["1 thread", "$(nthreads()) threads", "gpu"],
               speedup,
-        title="Benchmark (seconds)")
+        title="Relative Speedup")
 
 show(plt)
