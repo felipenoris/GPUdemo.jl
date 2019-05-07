@@ -16,7 +16,6 @@ kernel(y) = (y / 33f0) * (732.f0/y)
 @info("1 thread...")
 single_t = @belapsed map!($kernel, $x, $y)
 
-# on the CPU with 4 threads (2 real cores):
 @info("$(nthreads()) threads...")
 thread_t = @belapsed threadded_map!($kernel, $x, $y)
 
