@@ -11,13 +11,16 @@ function threadded_map!(f::Function, A::Array, B::Array)
 end
 x, y = rand(10^7), rand(10^7)
 kernel(y) = (y / 33f0) * (732.f0/y)
-# on the cpu without threads:
+
+
+@info("1 thread...")
 single_t = @belapsed map!($kernel, $x, $y)
 
 # on the CPU with 4 threads (2 real cores):
+@info("$(nthreads()) threads...")
 thread_t = @belapsed threadded_map!($kernel, $x, $y)
 
-# on the GPU:
+@info("GPU...")
 xgpu, ygpu = cu(x), cu(y)
 gpu_t = @belapsed begin
   map!($kernel, $xgpu, $ygpu)
