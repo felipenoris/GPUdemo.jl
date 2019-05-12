@@ -14,6 +14,23 @@ by Simon Danisch.
 
 * CUDA Toolkit
 
+## Machine Script
+
+Check the `aws` folder in this repo.
+
+Run the following scripts in order:
+
+1) `init_worker.sh`
+
+2) `gpu.sh`
+
+3) `cuda.sh`
+
+Steps 2 and 3 require a reboot after running the script.
+
+After rebooting on step 2, run `nvidia-smi`
+to check that we can talk to the GPU.
+
 ## Results
 
 ```
